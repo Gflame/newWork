@@ -1,0 +1,36 @@
+<md-sidenav-container [class]="theme">
+    <md-sidenav #sidenav>
+      System Menu
+    </md-sidenav>
+
+    <md-toolbar>
+      <button type="button" md-button (click)="sidenav.open()" mdTooltip="Open Menu">
+        <md-icon>menu</md-icon>
+      </button>
+      <span> Welcome to {{title}}</span>
+    </md-toolbar>
+    <div>
+      <md-toolbar color="primary">
+
+
+
+          <md-select placeholder="My Theme"
+                     [(ngModel)]="theme"
+                     (change)="onThemeChange()"
+          >
+            <md-option value="my-theme">Light</md-option>
+            <md-option value="my-second-theme">Dark</md-option>
+          </md-select>
+
+      </md-toolbar>
+
+      <router-outlet></router-outlet>
+    </div>
+  </md-sidenav-container>
+
+
+
+
+
+
+
