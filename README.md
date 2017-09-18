@@ -1,6 +1,6 @@
 
 # Require node -v >= @8
-
+_Clone progect, npm install and npm start
 
 # What I did ...:
 
@@ -26,3 +26,4 @@ sidenav, table and charts: src/app/dashboard/
 - webpack: config to dist client app,
 - login/authentication,
 - data sourcing
+clone progect, npm install and npm start
