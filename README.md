@@ -19,6 +19,9 @@ src/app/app.routing.ts
 - Includ components{
 sidenav, table and charts: src/app/dashboard/
 }
+- webpack set up bild in  {
+webpack.config.js
+}
 
 # And What I havet to do...:
 
