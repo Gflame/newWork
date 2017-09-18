@@ -26,4 +26,4 @@ sidenav, table and charts: src/app/dashboard/
 - webpack: config to dist client app,
 - login/authentication,
 - data sourcing
-clone progect, npm install and npm start
+ 
