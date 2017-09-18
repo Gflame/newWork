@@ -1,7 +1,8 @@
 
 
 
-What I did ...:
+#What I did ...:
+
 Setup app Angular 2/4 for reference {
 package.json,
 src/app/app.module.ts
@@ -18,7 +19,7 @@ Includ components{
 sidenav, table and charts: src/app/dashboard/
 }
 
-And What I havet to do...:
+# And What I havet to do...:
 
 facelift UI,
 webpack: config to dist client app,
