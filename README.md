@@ -1,6 +1,6 @@
 
 # Require node -v >= @8
-_Clone progect, npm install and npm start
+Clone progect, npm install and npm start
 
 # What I did ...:
 
