@@ -19,7 +19,7 @@ src/app/app.routing.ts
 - Includ components{
 sidenav, table and charts: src/app/dashboard/
 }
-- webpack set up bild in  {
+- webpack set up built in  {
 webpack.config.js
 }
 
