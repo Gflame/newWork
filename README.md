@@ -5,8 +5,8 @@
 # What I did ...:
 
 - Setup app Angular 2/4 for reference {
-$package.json,
-$src/app/app.module.ts
+!package.json,
+!src/app/app.module.ts
 },
 - Dinamic Theme{
 src/app/app.component.ts ,
