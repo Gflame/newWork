@@ -1,7 +1,7 @@
 
 
 
-#What I did ...:
+# What I did ...:
 
 Setup app Angular 2/4 for reference {
 package.json,
