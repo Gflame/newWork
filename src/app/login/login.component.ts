@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
   loginUser(e) {
-
+    this.router.navigate(['dashboard']);
     let username = e.target.element[0].value;
     let password = e.target.element[1].value;
     console.log(username, password);
