@@ -1,4 +1,14 @@
 //@import "../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+html, body, material-app, md-sidenav-container, .my-content {
+  background-color: #f5f7fa;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+
 @import '~@angular/material/theming';
 
 @include mat-core();
@@ -6,11 +16,7 @@
 @import  './themes/my-theme';
 @import  './themes/my-second-theme';
 
-html, body, material-app, md-sidenav-container, .my-content {
-  margin: 0;
-  width: 100%;
-  height: 100%;
-}
+
 
 md-sidenav {
   width: 200px;
