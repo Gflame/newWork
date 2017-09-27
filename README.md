@@ -19,14 +19,13 @@ src/app/app.routing.ts
 - Includ components{
 sidenav, table and charts: src/app/dashboard/
 }
-- webpack set up built in  {
+- webpack config to dist client app  {
 webpack.config.js
 }
 
 # And What I havet to do...:
 
 - facelift UI,
-- webpack: config to dist client app,
 - login/authentication,
 - data sourcing
  
