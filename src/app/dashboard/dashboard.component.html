@@ -1,18 +1,20 @@
-<md-icon svgIcon="thumbs-up"></md-icon>
-<md-card>
-  <button md-raised-button color="primary">Primary</button>
-  <button md-raised-button color="accent">Accent</button>
-  <button md-raised-button color="warn">Warn</button>
-</md-card>
-<br>
-<md-card>
-  <div>
-    <amte-table></amte-table>
-  </div>
-</md-card>
-<div class="card-container">
-<md-card class="">
-    <canvas baseChart
+
+
+<md-tab-group>
+  <md-tab label="Tab 1">
+
+      <md-icon svgIcon="thumbs-up"></md-icon>
+      <md-card>
+        <button md-raised-button color="primary">Primary</button>
+        <button md-raised-button color="accent">Accent</button>
+        <button md-raised-button color="warn">Warn</button>
+      </md-card>
+
+      <amte-table></amte-table>
+      <md-card>
+<div class="row">
+  <div class="col-md-6">
+   <canvas baseChart
             [datasets]="barChartData"
             [labels]="barChartLabels"
             [options]="barChartOptions"
@@ -23,10 +25,10 @@
 
     </canvas>
 
-    <button (click)="randomize()">Update</button>
+    <button (click)="randomize()" md-raised-button color="primary">Update</button>
 
-</md-card>
-<md-card>
+  </div>
+  <div class="col-md-6">
 
     <canvas baseChart
             [data]="doughnutChartData"
@@ -34,6 +36,23 @@
             [chartType]="doughnutChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"></canvas>
-</md-card>
-
+  </div>
 </div>
+    </md-card>
+
+  </md-tab>
+
+  <md-tab label="Tab 2">
+    <md-card>
+      <router-outlet></router-outlet>
+    <amte-new-table></amte-new-table>
+    </md-card>
+  </md-tab>
+</md-tab-group>
+
+
+
+
+
+
+

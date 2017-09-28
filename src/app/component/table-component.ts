@@ -26,6 +26,8 @@ import {TableData} from '../dashboard/table-data/table-data';
   templateUrl: 'table-component.html',
 })
 export class TableComponent implements OnInit {
+  data
+
   searchText = 'swsw';
   displayedColumns = [ 'name', 'position', 'office', 'ext', 'startDate', 'salary' ];
   exampleDatabase = new ExampleDatabase();
@@ -45,7 +47,7 @@ export class TableComponent implements OnInit {
         if (!this.dataSource) { return; }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-    console.log(this.dataSource.filter);
+    console.log(this.exampleDatabase.dataChange);
   }
 }
 
@@ -162,5 +164,6 @@ export class ExampleDataSource extends DataSource<any> {
   disconnect() {
   }
 }
+
 
 

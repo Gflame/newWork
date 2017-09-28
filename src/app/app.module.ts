@@ -21,6 +21,10 @@ import {LoginComponent} from './login/login.component';
 import {ChartsModule} from 'ng2-charts';
 import { FilterPipe, SortByPipe } from './component/pipes';
 import { TableComponent } from './component/table-component';
+import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { NewTableComponent } from './component/new-table.component';
+import { ProductDetailsComponent } from './product-details/product-details.component';
+
 
 
 @NgModule({
@@ -30,7 +34,9 @@ import { TableComponent } from './component/table-component';
     SortByPipe,
     DashboardComponent,
     LoginComponent,
-    TableComponent
+    TableComponent,
+    NewTableComponent,
+    ProductDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +53,8 @@ import { TableComponent } from './component/table-component';
     MdGridListModule,
     MdIconModule,
     MdInputModule,
-    ChartsModule
+    ChartsModule,
+    Ng2SmartTableModule,
   ],
   bootstrap: [AppComponent]
 })

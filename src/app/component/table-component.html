@@ -4,6 +4,19 @@
       <input mdInput #filter placeholder="Filter users">
     </md-form-field>
 
+
+    <table>
+      <tr>
+        <th></th>
+      </tr>
+      <tr>
+        <td *ngFor="let i of TableData">
+          {{i.name}}
+        </td>
+      </tr>
+    </table>
+
+
     <md-table #table [dataSource]="dataSource">
 
       <!--- Note that these columns can be defined in any order.
@@ -14,7 +27,7 @@
       <ng-container mdColumnDef="name">
         <md-header-cell *mdHeaderCellDef> Name
         </md-header-cell>
-        <md-cell *mdCellDef="let row"> {{row.name}} </md-cell>
+        <md-cell *mdCellDef="let row" ><a [routerLink]="['/product-details', row.ext]">{{row.name}}</a></md-cell>
       </ng-container>
 
       <!-- Progress Column -->

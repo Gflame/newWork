@@ -5,8 +5,7 @@
     </button>
     <span> Welcome to {{title}}</span>
   </md-toolbar>
-    <md-sidenav-container>
-      
+    <md-sidenav-container [ngStyle]="{'min-height.px': heightExp}">
       <md-sidenav #sidenav>
         <md-toolbar color="primary">
           primary
@@ -19,10 +18,8 @@
           <md-option value="my-theme">Light</md-option>
           <md-option value="my-second-theme">Dark</md-option>
         </md-select>
-
       </md-toolbar>
       <router-outlet></router-outlet>
-
   </md-sidenav-container>
 </div>
 
