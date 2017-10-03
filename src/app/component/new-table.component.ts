@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {TableData} from '../dashboard/table-data/table-data';
+import {MdPaginator} from '@angular/material';
 import { Router } from '@angular/router';
 
 // <ng2-smart-table [settings]="settings" [source]="data"></ng2-smart-table>
@@ -16,13 +17,11 @@ import { Router } from '@angular/router';
   '<td>{{i.position}}</td>' +
   '</tr>' +
   '</table>'
-
 })
 
 
 
 export class NewTableComponent implements OnInit {
-
 
 
   get data(): Array<any> {
@@ -70,7 +69,10 @@ export class NewTableComponent implements OnInit {
   //     }
   //   }
   // };
+
+
   ngOnInit() {
   }
 
 }
+

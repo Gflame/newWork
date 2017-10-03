@@ -11,13 +11,6 @@ import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {TableData} from '../dashboard/table-data/table-data';
 
-
-
-
-
-
-
-
 /**
  * @title Table with pagination
  */
@@ -26,16 +19,14 @@ import {TableData} from '../dashboard/table-data/table-data';
   templateUrl: 'table-component.html',
 })
 export class TableComponent implements OnInit {
-  data
 
-  searchText = 'swsw';
-  displayedColumns = [ 'name', 'position', 'office', 'ext', 'startDate', 'salary' ];
+
+  displayedColumns = ['name', 'position', 'office', 'ext', 'startDate', 'salary'];
   exampleDatabase = new ExampleDatabase();
   dataSource: ExampleDataSource | null;
 
-
   @ViewChild('filter') filter: ElementRef;
-  @ViewChild(MdPaginator) paginator: MdPaginator;
+  @ViewChild( MdPaginator ) paginator: MdPaginator;
 
   ngOnInit(): void {
 
@@ -44,7 +35,9 @@ export class TableComponent implements OnInit {
       .debounceTime(150)
       .distinctUntilChanged()
       .subscribe(() => {
-        if (!this.dataSource) { return; }
+        if (!this.dataSource) {
+          return;
+        }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
     console.log(this.exampleDatabase.dataChange);
@@ -71,7 +64,6 @@ export class ExampleDatabase {
   }
 
   constructor() {
-
     // Fill up the database with 100 users.
     for (let i = 0; i < 100; i++) {
       this.addUser(i);
@@ -98,11 +90,10 @@ export class ExampleDatabase {
     return {
       name: TableData[i].name,
       position: TableData[i].position,
-      office:  TableData[i].office,
-      ext:  TableData[i].ext,
+      office: TableData[i].office,
+      ext: TableData[i].ext,
       startDate: TableData[i].startDate,
-      salary:  TableData[i].salary
-
+      salary: TableData[i].salary
       // id: (this.data.length + 1).toString(),
       // name: name,
       // progress: Math.round(Math.random() * 100).toString(),
@@ -121,8 +112,14 @@ export class ExampleDatabase {
 export class ExampleDataSource extends DataSource<any> {
 
   _filterChange = new BehaviorSubject('');
-  get filter(): string { return this._filterChange.value; }
-  set filter(filter: string) { this._filterChange.next(filter); }
+
+  get filter(): string {
+    return this._filterChange.value;
+  }
+
+  set filter(filter: string) {
+    this._filterChange.next(filter);
+  }
 
   constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MdPaginator) {
     super();
@@ -131,26 +128,32 @@ export class ExampleDataSource extends DataSource<any> {
   /** Is pagination */
 
   connect(): Observable<UserData[]> {
-    const displayDataChanges = [
-      this._exampleDatabase.dataChange,
-     this._paginator.page,
-      this._filterChange,
-    ];
-    return Observable.merge(...displayDataChanges).map(() => {
+        const displayDataChanges = [
+          this._exampleDatabase.dataChange,
+          this._paginator.page,
+          this._filterChange,
+        ];
+        return Observable.merge(...displayDataChanges).map(() => {
+          // if (this._paginator.page) {
+          //   const data = this._exampleDatabase.data.slice();
+          //   // Grab the page's slice of data.
+          //   const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+          //   return data.splice(startIndex, this._paginator.pageSize);
+          // }
+          console.log(this._filterChange);
+
+            return this._exampleDatabase.data.slice().filter((item: UserData) => {
+              const searchStr = (item.name).toLowerCase();
+              return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+            });
 
 
-      if (this._paginator.page) {
-        const data = this._exampleDatabase.data.slice();
+      });
 
-        // Grab the page's slice of data.
-        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-        return data.splice(startIndex, this._paginator.pageSize);
+ }
 
-      }
 
-    });
 
-  }
   /** Is filtering */
   // connect(): Observable<UserData[]> {
   //   const displayDataChanges = [

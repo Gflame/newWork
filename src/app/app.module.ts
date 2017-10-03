@@ -15,19 +15,21 @@ import {
   MdInputModule,
 
 } from '@angular/material';
-import {AppComponent} from './app.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {LoginComponent} from './login/login.component';
-import {ChartsModule} from 'ng2-charts';
+import { AppComponent } from './app.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { LoginComponent } from './login/login.component';
+import { ChartsModule } from 'ng2-charts';
 import { FilterPipe, SortByPipe } from './component/pipes';
 import { TableComponent } from './component/table-component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { NewTableComponent } from './component/new-table.component';
 import { ProductDetailsComponent } from './product-details/product-details.component';
-
+import { UserService } from './user.service';
+import { AuthguardGuard } from './authguard.guard';
 
 
 @NgModule({
+
   declarations: [
     AppComponent,
     FilterPipe,
@@ -37,6 +39,7 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     TableComponent,
     NewTableComponent,
     ProductDetailsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,11 @@ import { ProductDetailsComponent } from './product-details/product-details.compo
     MdIconModule,
     MdInputModule,
     ChartsModule,
-    Ng2SmartTableModule,
+    Ng2SmartTableModule
+  ],
+  providers: [
+    UserService,
+    AuthguardGuard
   ],
   bootstrap: [AppComponent]
 })

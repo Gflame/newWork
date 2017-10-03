@@ -1,5 +1,5 @@
 <div [class]="theme">
-  <md-toolbar>
+  <md-toolbar >
     <button type="button" md-button (click)="sidenav.open()" mdTooltip="Open Menu">
       <md-icon>menu</md-icon>
     </button>
@@ -11,7 +11,7 @@
           primary
         </md-toolbar>
       </md-sidenav>
-      <md-toolbar color="primary">
+      <md-toolbar color="primary" ng-if="loginUser">
         <md-select placeholder="My Theme"
                    [(ngModel)]="theme"
                    (change)="onThemeChange()">

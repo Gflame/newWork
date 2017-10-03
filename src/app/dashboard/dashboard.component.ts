@@ -1,24 +1,23 @@
 import {Component, ViewChild, ElementRef, VERSION } from '@angular/core';
-
-
-
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'amte-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
 
+  constructor(private user: UserService) {
+  }
   /*Bar_start*/
-  public barChartOptions: any = {scaleShowVerticalLines: true, responsive: true};
+  public barChartOptions: any = {scaleShowVerticalLines: false, responsive: true};
   public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   public barChartType: string = 'bar';
   public barChartLegend: boolean = true;
 
-  public barChartData: any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [78, 18, 60, 19, 86, 37, 10], label: 'Series C'}
-    ];
+  public barChartData: any[] = [{
+    data: [65, 59, 80, 81, 56, 55, 40],
+    label: 'Series A'
+  }, {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}];
   // public chartClicked(e: any): void {
   //   console.log(e);
   // }
@@ -34,18 +33,18 @@ export class DashboardComponent {
 
   /*Bar_end*/
   /*Doughnut_start*/
-  public doughnutChartLabels: string[] = ['Series A', 'Series B', 'Series C'];
-  public doughnutChartData: number[] = [70, 12, 18];
+  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
+  public doughnutChartData: number[] = [23, 21, 100];
   public doughnutChartType: string = 'doughnut';
 
 
-  public chartClicked(e: any): void {
-    console.log(e);
-  }
-
-  public chartHovered(e: any): void {
-    console.log(e);
-  }
+  // public chartClicked(e: any): void {
+  //   console.log(e);
+  // }
+  //
+  // public chartHovered(e: any): void {
+  //   console.log(e);
+  // }
 
 }
   /*Doughnut_end*/

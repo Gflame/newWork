@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {MdToolbarModule} from '@angular/material';
-import {error} from "util";
+import {UserService} from '../user.service';
+
 
 
 @Component({
@@ -10,23 +10,21 @@ import {error} from "util";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+ username = '';
+ password = '';
 
-
-  constructor(private router:Router) { }
+  constructor(private router: Router, private user: UserService) { }
 
   ngOnInit() {
 
   }
   loginUser(e) {
-    this.router.navigate(['dashboard']);
-    const username = e.target.element[1].value;
-    const password = e.target.element[2].value;
-
-    if ( username === 'admin' && password === 'pass') {
-
-     this.router.navigate(['/dashboard']);
+    e.preventDefault();
+    this.username = e.srcElement[0].value;
+    this.password = e.srcElement[1].value;
+    if ( this.username == 'admin' && this.password == 'pass') {
+      this.user.setUserLoggedIn();
+      this.router.navigate(['/dashboard']);
     }
-    console.log(username, password);
-
    }
 }

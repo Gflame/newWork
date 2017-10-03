@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import { OverlayContainer} from '@angular/material';
-
+import { NgStyle } from '@angular/common';
 
 @Component({
   selector: 'amte-root',
@@ -9,15 +9,16 @@ import { OverlayContainer} from '@angular/material';
 
 })
 export class AppComponent implements OnInit {
-  title = 'OLCS';
-  theme = 'my-theme';
-  heightExp = window.innerHeight - 64;
+
+   title = 'OLCS';
+   theme = 'my-theme';
+   heightExp = window.innerHeight - 64;
+
 
 
   constructor(
     private overlayContainer: OverlayContainer
   ) {
-
   }
   ngOnInit(): void {
     this.overlayContainer.themeClass = this.theme;

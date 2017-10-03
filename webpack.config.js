@@ -4,12 +4,13 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ProgressPlugin = require('webpack/lib/ProgressPlugin');
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssUrl = require('postcss-url');
 const cssnano = require('cssnano');
 
 const { NoEmitOnErrorsPlugin, SourceMapDevToolPlugin, NamedModulesPlugin } = require('webpack');
-const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin } = require('@angular/cli/plugins/webpack');
+const { NamedLazyChunksWebpackPlugin, BaseHrefWebpackPlugin, SuppressExtractedTextChunksWebpackPlugin } = require('@angular/cli/plugins/webpack');
 const { CommonsChunkPlugin } = require('webpack').optimize;
 const { AotPlugin } = require('@ngtools/webpack');
 
@@ -125,7 +126,7 @@ module.exports = {
           {
             "loader": "css-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "importLoaders": 1
             }
           },
@@ -148,7 +149,7 @@ module.exports = {
           {
             "loader": "css-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "importLoaders": 1
             }
           },
@@ -162,7 +163,7 @@ module.exports = {
           {
             "loader": "sass-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "precision": 8,
               "includePaths": []
             }
@@ -179,7 +180,7 @@ module.exports = {
           {
             "loader": "css-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "importLoaders": 1
             }
           },
@@ -193,7 +194,7 @@ module.exports = {
           {
             "loader": "less-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "paths": []
             }
           }
@@ -209,7 +210,7 @@ module.exports = {
           {
             "loader": "css-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "importLoaders": 1
             }
           },
@@ -223,7 +224,7 @@ module.exports = {
           {
             "loader": "stylus-loader",
             "options": {
-              "sourceMap": false,
+              "sourceMap": true,
               "paths": []
             }
           }
@@ -234,114 +235,122 @@ module.exports = {
           path.join(process.cwd(), "src/styles.scss")
         ],
         "test": /\.css$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          }
-        ]
+        "loaders": ExtractTextPlugin.extract({
+  "use": [
+    {
+      "loader": "css-loader",
+      "options": {
+        "sourceMap": true,
+        "importLoaders": 1
+      }
+    },
+    {
+      "loader": "postcss-loader",
+      "options": {
+        "ident": "postcss",
+        "plugins": postcssPlugins
+      }
+    }
+  ],
+  "publicPath": ""
+})
       },
       {
         "include": [
           path.join(process.cwd(), "src/styles.scss")
         ],
         "test": /\.scss$|\.sass$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "sass-loader",
-            "options": {
-              "sourceMap": false,
-              "precision": 8,
-              "includePaths": []
-            }
-          }
-        ]
+        "loaders": ExtractTextPlugin.extract({
+  "use": [
+    {
+      "loader": "css-loader",
+      "options": {
+        "sourceMap": true,
+        "importLoaders": 1
+      }
+    },
+    {
+      "loader": "postcss-loader",
+      "options": {
+        "ident": "postcss",
+        "plugins": postcssPlugins
+      }
+    },
+    {
+      "loader": "sass-loader",
+      "options": {
+        "sourceMap": true,
+        "precision": 8,
+        "includePaths": []
+      }
+    }
+  ],
+  "publicPath": ""
+})
       },
       {
         "include": [
           path.join(process.cwd(), "src/styles.scss")
         ],
         "test": /\.less$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "less-loader",
-            "options": {
-              "sourceMap": false,
-              "paths": []
-            }
-          }
-        ]
+        "loaders": ExtractTextPlugin.extract({
+  "use": [
+    {
+      "loader": "css-loader",
+      "options": {
+        "sourceMap": true,
+        "importLoaders": 1
+      }
+    },
+    {
+      "loader": "postcss-loader",
+      "options": {
+        "ident": "postcss",
+        "plugins": postcssPlugins
+      }
+    },
+    {
+      "loader": "less-loader",
+      "options": {
+        "sourceMap": true,
+        "paths": []
+      }
+    }
+  ],
+  "publicPath": ""
+})
       },
       {
         "include": [
           path.join(process.cwd(), "src/styles.scss")
         ],
         "test": /\.styl$/,
-        "use": [
-          "style-loader",
-          {
-            "loader": "css-loader",
-            "options": {
-              "sourceMap": false,
-              "importLoaders": 1
-            }
-          },
-          {
-            "loader": "postcss-loader",
-            "options": {
-              "ident": "postcss",
-              "plugins": postcssPlugins
-            }
-          },
-          {
-            "loader": "stylus-loader",
-            "options": {
-              "sourceMap": false,
-              "paths": []
-            }
-          }
-        ]
+        "loaders": ExtractTextPlugin.extract({
+  "use": [
+    {
+      "loader": "css-loader",
+      "options": {
+        "sourceMap": true,
+        "importLoaders": 1
+      }
+    },
+    {
+      "loader": "postcss-loader",
+      "options": {
+        "ident": "postcss",
+        "plugins": postcssPlugins
+      }
+    },
+    {
+      "loader": "stylus-loader",
+      "options": {
+        "sourceMap": true,
+        "paths": []
+      }
+    }
+  ],
+  "publicPath": ""
+})
       },
       {
         "test": /\.ts$/,
@@ -442,6 +451,10 @@ module.exports = {
       "minChunks": 2,
       "async": "common"
     }),
+    new ExtractTextPlugin({
+      "filename": "[name].bundle.css"
+    }),
+    new SuppressExtractedTextChunksWebpackPlugin(),
     new NamedModulesPlugin({}),
     new AotPlugin({
       "mainPath": "main.ts",
