@@ -1,53 +1,74 @@
-
-
-<md-tab-group>
-  <md-tab label="Tab 1">
+<md-toolbar >
+  <button type="button" md-button (click)="sidenav.open()" mdTooltip="Open Menu">
+    <md-icon>menu</md-icon>
+  </button>
+  <span> Welcome to {{vm.title}}</span>
+</md-toolbar>
+<md-sidenav-container [ngStyle]="{'min-height.px': heightExp}">
+  <md-sidenav #sidenav>
+    <md-toolbar color="primary">
+      primary
+    </md-toolbar>
+  </md-sidenav>
+  <md-toolbar color="primary">
+    <md-select placeholder="My Theme"
+               [(ngModel)]="vm.theme"
+               (change)="vm.onThemeChange()">
+      <md-option value="my-theme">Light</md-option>
+      <md-option value="my-second-theme">Dark</md-option>
+      <md-option value="my-theme-margo">margo</md-option>
+    </md-select>
+  </md-toolbar>
+  <md-tab-group>
+    <md-tab label="Tab 1">
       <md-icon svgIcon="thumbs-up"></md-icon>
       <md-card>
         <button md-raised-button color="primary">Primary</button>
         <button md-raised-button color="accent">Accent</button>
         <button md-raised-button color="warn">Warn</button>
       </md-card>
-
       <amte-table></amte-table>
       <md-card>
-<div class="row">
-  <div class="col-md-6">
-   <canvas baseChart
-            [datasets]="barChartData"
-            [labels]="barChartLabels"
-            [options]="barChartOptions"
-            [legend]="barChartLegend"
-            [chartType]="barChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)">
+        <div class="row">
+          <div class="col-md-6">
+            <canvas baseChart
+                    [datasets]="barChartData"
+                    [labels]="barChartLabels"
+                    [options]="barChartOptions"
+                    [legend]="barChartLegend"
+                    [chartType]="barChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)">
 
-    </canvas>
+            </canvas>
 
-    <button (click)="randomize()" md-raised-button color="primary">Update</button>
+            <button (click)="randomize()" md-raised-button color="primary">Update</button>
 
-  </div>
-  <div class="col-md-6">
+          </div>
+          <div class="col-md-6">
+            <canvas baseChart
+                    [data]="doughnutChartData"
+                    [labels]="doughnutChartLabels"
+                    [chartType]="doughnutChartType"
+                    (chartHover)="chartHovered($event)"
+                    (chartClick)="chartClicked($event)"></canvas>
+          </div>
+        </div>
+      </md-card>
 
-    <canvas baseChart
-            [data]="doughnutChartData"
-            [labels]="doughnutChartLabels"
-            [chartType]="doughnutChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"></canvas>
-  </div>
-</div>
-    </md-card>
+    </md-tab>
 
-  </md-tab>
+    <md-tab label="Tab 2">
+      <md-card>
+        <router-outlet></router-outlet>
+        <amte-new-table></amte-new-table>
+      </md-card>
+    </md-tab>
+  </md-tab-group>
+</md-sidenav-container>
 
-  <md-tab label="Tab 2">
-    <md-card>
-      <router-outlet></router-outlet>
-    <amte-new-table></amte-new-table>
-    </md-card>
-  </md-tab>
-</md-tab-group>
+
+
 
 
 

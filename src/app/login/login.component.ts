@@ -19,11 +19,11 @@ export class LoginComponent implements OnInit {
 
   }
   loginUser(e) {
-    e.preventDefault();
+  //  e.preventDefault();
     this.username = e.srcElement[0].value;
     this.password = e.srcElement[1].value;
-    if ( this.username == 'admin' && this.password == 'pass') {
-      this.user.setUserLoggedIn();
+    if ( this.username === 'admin' && this.password === 'pass') {
+     this.user.setUserLoggedIn();
       this.router.navigate(['/dashboard']);
     }
    }

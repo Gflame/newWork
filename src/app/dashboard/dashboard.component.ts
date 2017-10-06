@@ -1,13 +1,24 @@
-import {Component, ViewChild, ElementRef, VERSION } from '@angular/core';
+import {Component, ViewChild, ElementRef, VERSION, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
+import { OverlayContainer} from '@angular/material';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'amte-dashboard', templateUrl: './dashboard.component.html', styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
 
-  constructor(private user: UserService) {
+  constructor(
+    private vm: AppComponent,
+    private overlayContainer: OverlayContainer,
+    private user: UserService
+  ) {
   }
+
+  ngOnInit() {
+
+  }
+
   /*Bar_start*/
   public barChartOptions: any = {scaleShowVerticalLines: false, responsive: true};
   public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
@@ -30,21 +41,22 @@ export class DashboardComponent {
     clone[0].data = data;
     this.barChartData = clone;
   }
-
   /*Bar_end*/
   /*Doughnut_start*/
   public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
   public doughnutChartData: number[] = [23, 21, 100];
   public doughnutChartType: string = 'doughnut';
 
-
+  chartClicked(e) {
+    console.log('Data of', e, this.doughnutChartData);
+  }
   // public chartClicked(e: any): void {
   //   console.log(e);
   // }
   //
-  // public chartHovered(e: any): void {
-  //   console.log(e);
-  // }
+  public chartHovered(e: any): void {
+    console.log(e);
+  }
 
 }
   /*Doughnut_end*/

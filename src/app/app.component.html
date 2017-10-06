@@ -1,25 +1,8 @@
-<div [class]="theme">
-  <md-toolbar >
-    <button type="button" md-button (click)="sidenav.open()" mdTooltip="Open Menu">
-      <md-icon>menu</md-icon>
-    </button>
-    <span> Welcome to {{title}}</span>
-  </md-toolbar>
-    <md-sidenav-container [ngStyle]="{'min-height.px': heightExp}">
-      <md-sidenav #sidenav>
-        <md-toolbar color="primary">
-          primary
-        </md-toolbar>
-      </md-sidenav>
-      <md-toolbar color="primary" ng-if="loginUser">
-        <md-select placeholder="My Theme"
-                   [(ngModel)]="theme"
-                   (change)="onThemeChange()">
-          <md-option value="my-theme">Light</md-option>
-          <md-option value="my-second-theme">Dark</md-option>
-        </md-select>
-      </md-toolbar>
-      <router-outlet></router-outlet>
-  </md-sidenav-container>
+<div [class]="theme" >
+  <router-outlet ></router-outlet>
 </div>
+
+
+
+
 

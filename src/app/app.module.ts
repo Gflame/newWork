@@ -28,6 +28,7 @@ import { UserService } from './user.service';
 import { AuthguardGuard } from './authguard.guard';
 
 
+
 @NgModule({
 
   declarations: [
@@ -38,7 +39,8 @@ import { AuthguardGuard } from './authguard.guard';
     LoginComponent,
     TableComponent,
     NewTableComponent,
-    ProductDetailsComponent
+    ProductDetailsComponent,
+
 
   ],
   imports: [
@@ -57,7 +59,8 @@ import { AuthguardGuard } from './authguard.guard';
     MdIconModule,
     MdInputModule,
     ChartsModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+
   ],
   providers: [
     UserService,

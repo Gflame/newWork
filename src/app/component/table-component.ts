@@ -10,6 +10,8 @@ import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/observable/fromEvent';
 import {TableData} from '../dashboard/table-data/table-data';
+import {subscribeOn} from "rxjs/operator/subscribeOn";
+import {toSubscriber} from "rxjs/util/toSubscriber";
 
 /**
  * @title Table with pagination
@@ -26,7 +28,7 @@ export class TableComponent implements OnInit {
   dataSource: ExampleDataSource | null;
 
   @ViewChild('filter') filter: ElementRef;
-  @ViewChild( MdPaginator ) paginator: MdPaginator;
+  @ViewChild(MdPaginator) paginator: MdPaginator;
 
   ngOnInit(): void {
 
@@ -40,7 +42,6 @@ export class TableComponent implements OnInit {
         }
         this.dataSource.filter = this.filter.nativeElement.value;
       });
-    console.log(this.exampleDatabase.dataChange);
   }
 }
 
@@ -123,35 +124,42 @@ export class ExampleDataSource extends DataSource<any> {
 
   constructor(private _exampleDatabase: ExampleDatabase, private _paginator: MdPaginator) {
     super();
+
   }
 
   /** Is pagination */
 
+
+
+
   connect(): Observable<UserData[]> {
-        const displayDataChanges = [
-          this._exampleDatabase.dataChange,
-          this._paginator.page,
-          this._filterChange,
-        ];
-        return Observable.merge(...displayDataChanges).map(() => {
-          // if (this._paginator.page) {
-          //   const data = this._exampleDatabase.data.slice();
-          //   // Grab the page's slice of data.
-          //   const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-          //   return data.splice(startIndex, this._paginator.pageSize);
-          // }
-          console.log(this._filterChange);
-
-            return this._exampleDatabase.data.slice().filter((item: UserData) => {
-              const searchStr = (item.name).toLowerCase();
-              return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-            });
+    const displayDataChanges = [
+      this._exampleDatabase.dataChange,
+      this._paginator.page,
+      this._filterChange,
+    ];
 
 
-      });
+    if (this._paginator.page) {
+      return Observable.merge(...displayDataChanges)
+        .map(() => {
+      const data = this._exampleDatabase.data.slice();
+      // Grab the page's slice of data.
+      const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+      return data.splice(startIndex, this._paginator.pageSize);
+    });
+    }
 
- }
-
+    if (this._paginator.page) {
+      return Observable.merge(...displayDataChanges)
+        .map(() => {
+          return this._exampleDatabase.data.slice().filter((item: UserData) => {
+            const searchStr = (item.name).toLowerCase();
+            return searchStr.indexOf(this.filter.toLowerCase()) !== -1;
+          });
+        });
+    }
+  }
 
 
   /** Is filtering */
